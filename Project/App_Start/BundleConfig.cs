@@ -24,7 +24,11 @@ namespace Project
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/best-theme-name.css"));
+
+            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+                     "~/Content/font-awesome.css"));
         }
     }
 }

@@ -4,37 +4,42 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/fontawesome")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <nav class="navbar navbar-dark fixed-top bg-dark p-0 shadow">
+        @Html.ActionLink("RWA MVC Project", "Index", "Home", new { area = "" }, new { @class = "navbar-brand col-sm-3 col-md-2 mr-0" })
+        @Html.Partial("_LoginPartial")
+    </nav>
+
+    <div class="container-fluid">
+        <main class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <i class="fa fa-flag"></i>@Html.ActionLink("Country", "Index", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-home"></i>@Html.ActionLink("City", "About", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            <i class="fa fa-users"></i>@Html.ActionLink("Buyer", "Contact", "Home", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </main>
+
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+            @RenderBody()
+            <hr />
+            <footer class="text-center">
+                <p>Copyright &copy; @DateTime.Now.Year - RWA MVC Project</p>
+            </footer>
+        </main>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
