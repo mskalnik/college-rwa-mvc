@@ -120,3 +120,4 @@ C:\Users\mskalnik\Documents\Faculty\2nd-year\4\RWA\exam\mvc\RwaMvc\Project\obj\D
 C:\Users\mskalnik\Documents\Faculty\2nd-year\4\RWA\exam\mvc\RwaMvc\Project\obj\Debug\Project.dll
 C:\Users\mskalnik\Documents\Faculty\2nd-year\4\RWA\exam\mvc\RwaMvc\Project\obj\Debug\Project.pdb
 C:\Users\mskalnik\Documents\Faculty\2nd-year\4\RWA\exam\mvc\RwaMvc\Project\obj\Debug\Project.csprojAssemblyReference.cache
+C:\Users\mskalnik\Documents\Faculty\2nd-year\4\RWA\exam\mvc\RwaMVC\Project\bin\Microsoft.ApplicationBlocks.Data.dll
