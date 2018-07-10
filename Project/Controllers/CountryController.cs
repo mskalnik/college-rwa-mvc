@@ -8,7 +8,7 @@ namespace Project.Controllers
 {
     public class CountryController : Controller
     {
-        // GET: City
+        [HttpGet]
         public ActionResult All()
         {
             return View(Repo.GetDrzave());

@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark p-0 shadow">
-        @Html.ActionLink("RWA MVC Project", "Index", "Home", new { area = "" }, new { @class = "navbar-brand col-sm-3 col-md-2 mr-0" })
+        @Html.ActionLink("RWA MVC Project", "All", "Country", new { area = "" }, new { @class = "navbar-brand col-sm-3 col-md-2 mr-0" })
         @Html.Partial("_LoginPartial")
     </nav>
 
@@ -23,10 +23,10 @@
                             <i class="fa fa-flag"></i>@Html.ActionLink("Country", "All", "Country", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-home"></i>@Html.ActionLink("City", "About", "Home", null, new { @class = "nav-link" })
+                            <i class="fa fa-home"></i>@Html.ActionLink("City", "All", "City", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            <i class="fa fa-users"></i>@Html.ActionLink("Buyer", "Contact", "Home", null, new { @class = "nav-link" })
+                            <i class="fa fa-users"></i>@Html.ActionLink("Buyer", "All", "Buyer", null, new { @class = "nav-link" })
                         </li>
                     </ul>
                 </div>
