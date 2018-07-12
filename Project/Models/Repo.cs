@@ -46,16 +46,16 @@ public class Repo
         }
     }
 
-    public static Grad GetGrad(int IDGrad)
-    {
-        DataRow row = SqlHelper.ExecuteDataset(cs, "GetGrad", IDGrad).Tables[0].Rows[0];
-        return new Grad
-        {
-            IDGrad = (int)row["IDGrad"],
-            DrzavaID = (int)row["DrzavaID"],
-            Naziv = row["Naziv"].ToString()
-        };
-    }
+    //public static Grad GetGrad(int IDGrad)
+    //{
+    //    DataRow row = SqlHelper.ExecuteDataset(cs, "GetGrad", IDGrad).Tables[0].Rows[0];
+    //    return new Grad
+    //    {
+    //        IDGrad = (int)row["IDGrad"],
+    //        DrzavaID = (int)row["DrzavaID"],
+    //        Naziv = row["Naziv"].ToString()
+    //    };
+    //}
 
     public static List<Drzava> GetDrzave()
     {
@@ -69,6 +69,18 @@ public class Repo
                 IDDrzava = (int)row["IDDrzava"],
                 Naziv = row["Naziv"].ToString()
             });
+        }
+        return kolekcija;
+    }
+
+    public static List<Grad> GetGrad(int id)
+    {
+        List<Grad> kolekcija = GetGradovi();
+
+        foreach (var g in kolekcija)
+        {
+            if (g.DrzavaID == id)
+                kolekcija.Add(g);
         }
         return kolekcija;
     }

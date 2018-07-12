@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Kupac>
+
+@{
+    ViewBag.Title = "Kupci";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped table-bordered table-hover" id="tblKupci">
+
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Ime
+            </td>
+            <td>
+                Prezime
+            </td>
+            <td>
+                E-mail
+            </td>
+            <td>Action</td>
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+
+</table>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tblBuyer').DataTable();
+        });
+
+        $("table.table")
+            .DataTable({
+                ajax: {
+                    url: '@Url.Action(controllerName:"Ajax",actionName:"GetKupci")',
+                    dataSrc: ""
+                },
+                columns: [
+                    { data: "Ime" },
+                    { data: "Prezime" },
+                    {
+                        data: "Email",
+                        render: function (data, type, kupac) {
+                            return `<a href='mailto:${data}'>${data}</a>`;
+                        }
+                    },
+                    {
+                        data: "",
+                        render: function (data, type, kupac) {
+                            return `<button class='btn btn-sm btn-primary' data-idkupac='${kupac.IDKupac}'>View recives</button>`
+                        }
+                    },
+                ]
+            })
+            .on("click", "button", function () {
+                var kupacId = ($(this).attr("data-idkupac"));
+                $.ajax({
+                    url: '@Url.Action(controllerName:"Ajax",actionName:"DeleteKupac")',
+                    data: { id: kupacId },
+                    statusCode: {
+                        200: function () {
+                            console.log("Delete OK");
+                        },
+                        304: function () {
+                            console.log("Delete ERROR");
+                        }
+                    }
+                })
+            });
+
+        $("#tblBuyer").css("width", "100%")
+
+    </script>
+}

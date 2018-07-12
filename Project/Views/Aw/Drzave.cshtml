@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Grad>
+
+@{
+    ViewBag.Title = "Drzave";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped table-bordered table-hover" style="width:100%" id="tblDrzave">
+
+    <thead class="thead-dark">
+        <tr>
+            <td>
+                Drzava
+            </td>
+            <td>
+                Akcija
+            </td>
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+
+</table>
+
+
+@section scripts{
+    <script>
+        $("table.table")
+            .DataTable({
+                ajax: {
+                    url: '@Url.Action(controllerName:"Ajax",actionName:"GetDrzave")',
+                    dataSrc: ""
+                },
+                columns: [
+                    { data: "Naziv" },
+                    {
+                        data: "",
+                        render: function (data, type, drzava) {
+                            return `<a href="/Drzava/${drzava.IDDrzava}" class='btn btn-sm btn-primary'>Pogledaj gradove</button>`
+                        }
+                    }
+                ]
+            })
+
+    </script>
+}

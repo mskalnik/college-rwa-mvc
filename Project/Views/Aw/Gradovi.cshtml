@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Grad>
+
+@{
+    ViewBag.Title = "Gradovi";
+    List<Drzava> drzave = Repo.GetDrzave();
+    List<SelectListItem> lista = new List<SelectListItem>();
+    foreach (var d in drzave)
+    {
+        lista.Add(new SelectListItem
+        {
+            Text = d.Naziv,
+            Value = d.IDDrzava.ToString()
+        });
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+    @Html.Label("Odaberi drzavu")
+    @Html.DropDownList("Drzava", lista, new { @class = "form form-control", id="drzave" })
+    <hr/>
+
+    <table class="table table-striped table-bordered table-hover" style="width:100%" id="tblGradovi">
+
+        <thead class="thead-dark">
+            <tr>
+                <td>
+                    Grad
+                </td>
+                <td>
+                    Drzava
+                </td>
+                <td>Akcija</td>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+
+    </table>
+
+
+    @section scripts{
+        <script>
+        $("table.table")
+            .DataTable({
+                ajax: {
+                    url: '@Url.Action(controllerName:"Ajax",actionName: "GetGradovi")',
+                    dataSrc: ""
+                },
+                columns: [
+                    { data: "Naziv" },
+                    { data: "DrzavaID" },
+                    {
+                        data: "",
+                        render: function (data, type, grad) {
+                            return `<button class='btn btn-sm btn-primary' data-tblGradovi='${grad.IDGrad}'>Pogledaj kupce</button>`
+                        }
+                    }
+                ]
+                })           
+
+        </script>
+    }
