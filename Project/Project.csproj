@@ -391,6 +391,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Data\procedures.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -572,6 +573,7 @@
     <Content Include="Views\Aw\UrediKupca.cshtml" />
     <Content Include="Views\Aw\Drzava.cshtml" />
     <Content Include="Views\Aw\Kupac.cshtml" />
+    <Content Include="Views\Aw\Racuni.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Ajax\" />

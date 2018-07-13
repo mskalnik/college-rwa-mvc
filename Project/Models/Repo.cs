@@ -56,9 +56,9 @@ public class Repo
             {
                 IDRacun = (int)row["IDRacun"],
                 DatumIzdavanja = DateTime.Parse(row["DatumIzdavanja"].ToString()),
-                BrojRacuna = row["Prezime"].ToString(),
-                KupacID = (int)row["Email"],
-                KomercijalistID = (int)row["Telefon"],
+                BrojRacuna = row["BrojRacuna"].ToString(),
+                KupacID = (int)row["KupacID"],
+                KomercijalistID = (int)row["KomercijalistID"],
                 Komentar = row["Komentar"].ToString()
             };
         }

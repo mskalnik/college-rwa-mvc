@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-hover table-striped table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Ime)
@@ -27,7 +27,10 @@
             @Html.DisplayNameFor(model => model.GradID)
         </th>
         <th>
-            Akcija
+            Uredi
+        </th>
+        <th>
+            Racuni
         </th>
     </tr>
 
@@ -51,6 +54,9 @@
         </td>
         <td>
             @Html.ActionLink("Uredi kupca", "UrediKupca", "Aw", new { id = item.IDKupac }, new { @class = "btn btn-small btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("Pogledaj racune", "Racuni", "Aw", new { id = item.IDKupac }, new { @class = "btn btn-small btn-primary" })
         </td>
     </tr>
 }

@@ -58,7 +58,7 @@ namespace Project.Controllers
 
         public ActionResult Racuni(int id)
         {
-            return View();
+            return View(Repo.GetRacuni(id));
         }
     }
 }
