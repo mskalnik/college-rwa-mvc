@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationBlocks.Data;
+using Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -46,16 +47,48 @@ public class Repo
         }
     }
 
-    //public static Grad GetGrad(int IDGrad)
-    //{
-    //    DataRow row = SqlHelper.ExecuteDataset(cs, "GetGrad", IDGrad).Tables[0].Rows[0];
-    //    return new Grad
-    //    {
-    //        IDGrad = (int)row["IDGrad"],
-    //        DrzavaID = (int)row["DrzavaID"],
-    //        Naziv = row["Naziv"].ToString()
-    //    };
-    //}
+    public static IEnumerable<Racun> GetRacuni(int id)
+    {
+        ds = SqlHelper.ExecuteDataset(cs, "DohvatiRacune", id);
+        foreach (DataRow row in ds.Tables[0].Rows)
+        {
+            yield return new Racun
+            {
+                IDRacun = (int)row["IDRacun"],
+                DatumIzdavanja = DateTime.Parse(row["DatumIzdavanja"].ToString()),
+                BrojRacuna = row["Prezime"].ToString(),
+                KupacID = (int)row["Email"],
+                KomercijalistID = (int)row["Telefon"],
+                Komentar = row["Komentar"].ToString()
+            };
+        }
+    }
+
+    public static List<Kupac> GetKupci(int id)
+    {
+        List<Kupac> kolekcija = GetKupci().ToList();
+        List<Kupac> nova = new List<Kupac>();
+
+        foreach (var k in kolekcija)
+        {
+            if (k.GradID == id)
+                nova.Add(k);
+        }
+        return nova;
+    }
+
+    public static List<Grad> GetGrad(int id)
+    {
+        List<Grad> kolekcija = GetGradovi();
+        List<Grad> nova = new List<Grad>();
+
+        foreach (var g in kolekcija)
+        {
+            if (g.DrzavaID == id)
+                nova.Add(g);
+        }
+        return nova;
+    }
 
     public static List<Drzava> GetDrzave()
     {
@@ -73,17 +106,6 @@ public class Repo
         return kolekcija;
     }
 
-    public static List<Grad> GetGrad(int id)
-    {
-        List<Grad> kolekcija = GetGradovi();
-
-        foreach (var g in kolekcija)
-        {
-            if (g.DrzavaID == id)
-                kolekcija.Add(g);
-        }
-        return kolekcija;
-    }
 
     public static List<Grad> GetGradovi()
     {
@@ -95,25 +117,17 @@ public class Repo
             kolekcija.Add(new Grad
             {
                 IDGrad = (int)row["IDGrad"],
-                Naziv = row["Naziv"].ToString()
+                Naziv = row["Naziv"].ToString(),
+                DrzavaID = (int)row["DrzavaID"]
             });
         }
         return kolekcija;
     }
 
+
+
     public static int UpdateKupac(Kupac kupac)
     {
         return SqlHelper.ExecuteNonQuery(cs, "UpdateKupac", kupac.IDKupac, kupac.Ime, kupac.Prezime, kupac.Email, kupac.Telefon, kupac.GradID);
     }
-
-    public static int InsertKupac(Kupac k)
-    {
-        return SqlHelper.ExecuteNonQuery(cs, "InsertKupac", k.Ime, k.Prezime, k.Email, k.Telefon, k.GradID);
-    }
-
-    public static int DeleteKupac(int kupacId)
-    {
-        return SqlHelper.ExecuteNonQuery(cs, "DeleteKupac", kupacId);
-    }
-
 }

@@ -22,6 +22,11 @@ namespace Project.Controllers
         {
             return Json(Repo.GetKupci(), JsonRequestBehavior.AllowGet);
         }
+        
+        public ActionResult GetKupac(int id)
+        {
+            return Json(Repo.GetKupac(id), JsonRequestBehavior.AllowGet);
+        }
 
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {

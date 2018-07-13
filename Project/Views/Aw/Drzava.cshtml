@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Grad>
+
+@{
+    ViewBag.Title = "Drzava";
+}
+
+<h2>Drzava</h2>
+
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            Pogledaj kupce
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    @Html.HiddenFor(modelItem => item.IDGrad)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <th>
+            @Html.ActionLink("Pogledaj kupce", "Kupac", "Aw", new { id = item.IDGrad }, new { @class = "btn btn-small btn-primary" })
+        </th>
+    </tr>
+}
+
+</table>
